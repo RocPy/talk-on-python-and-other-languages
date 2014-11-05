@@ -1,0 +1,16 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module thing ! in 
+    interface  ! in :thing
+        subroutine del2(stuff,fuzz,m,n) ! in :thing:thing.f95
+            double precision dimension(m,n),intent(in) :: stuff
+            double precision dimension(m,n),intent(inout),depend(m,n) :: fuzz
+            integer, optional,intent(in),check(shape(stuff,0)==m),depend(stuff) :: m=shape(stuff,0)
+            integer, optional,intent(in),check(shape(stuff,1)==n),depend(stuff) :: n=shape(stuff,1)
+        end subroutine del2
+    end interface 
+end python module thing
+
+! This file was auto-generated with f2py (version:2).
+! See http://cens.ioc.ee/projects/f2py2e/
